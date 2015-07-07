@@ -3,6 +3,8 @@
  *
  * Contact Email: <sebastian.heckmann@udo.edu>, <sebastian.laag@udo.edu>
  *
+ * Contact Email for Autonomic Resources: <mohamed.mohamed@telecom-sudparis.eu>
+ *
  * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +17,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package occi.infrastructure;
 
 import java.net.URISyntaxException;
@@ -27,14 +28,14 @@ import java.util.UUID;
 
 import javax.naming.directory.SchemaViolationException;
 
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
+
 import occi.config.OcciConfig;
 import occi.core.Action;
 import occi.core.Kind;
 import occi.core.Link;
 import occi.core.Resource;
-
-import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * The Network type represents a L2 networking entity (e.g. a virtual switch).
@@ -86,8 +87,8 @@ public class Network extends Resource {
 	/*
 	 * All possible network actions.
 	 */
-	private static ListableBeanFactory beanFactory = new ClassPathXmlApplicationContext(
-			"occiConfig.xml");
+	private static XmlBeanFactory beanFactory = new XmlBeanFactory(
+			new ClassPathResource("occiConfig.xml"));
 	private static Action up = (Action) beanFactory.getBean("up");
 	private static Action down = (Action) beanFactory.getBean("down");
 
@@ -282,7 +283,7 @@ public class Network extends Resource {
 			attributes.add("occi.network.state");
 		}
 	}
-
+	
 	/**
 	 * Return the network attributes.
 	 * 

@@ -1,3 +1,49 @@
+/**
+ * Copyright (C) 2010-2011 Sebastian Heckmann, Sebastian Laag
+ *
+ * Contact Email: <sebastian.heckmann@udo.edu>, <sebastian.laag@udo.edu>
+ *
+ * Contact Email for Autonomic Resources: <mohamed.mohamed@telecom-sudparis.eu>
+ *
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.gnu.org/licenses/lgpl-3.0.txt
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/*  
+Copyright (c) 2008-2011, Intel Performance Learning Solutions Ltd.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+ * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+ * Neither the name of Intel Performance Learning Solutions Ltd. nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL Intel Performance Learning Solutions Ltd. BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 package occi.http.check;
 
 import java.math.BigDecimal;
@@ -66,12 +112,10 @@ public class OcciParser extends Parser {
 
 	}
 
-	@Override
 	public String[] getTokenNames() {
 		return OcciParser.tokenNames;
 	}
 
-	@Override
 	public String getGrammarFileName() {
 		return "/Occi.g";
 	}
@@ -172,7 +216,7 @@ public class OcciParser extends Parser {
 
 					switch (alt1) {
 					case 1:
-					// category
+						// category
 					{
 						pushFollow(FOLLOW_category_in_headers152);
 						category1 = category();
@@ -185,7 +229,7 @@ public class OcciParser extends Parser {
 					}
 						break;
 					case 2:
-					// link
+						// link
 					{
 						pushFollow(FOLLOW_link_in_headers186);
 						link2 = link();
@@ -198,7 +242,7 @@ public class OcciParser extends Parser {
 					}
 						break;
 					case 3:
-					// attribute
+						// attribute
 					{
 						pushFollow(FOLLOW_attribute_in_headers224);
 						attribute3 = attribute();
@@ -211,7 +255,7 @@ public class OcciParser extends Parser {
 					}
 						break;
 					case 4:
-					// location
+						// location
 					{
 						pushFollow(FOLLOW_location_in_headers257);
 						location4 = location();
@@ -323,7 +367,7 @@ public class OcciParser extends Parser {
 
 					switch (alt2) {
 					case 1:
-					// ',' cv2= category_value
+						// ',' cv2= category_value
 					{
 						match(input, 14, FOLLOW_14_in_category_values549);
 						pushFollow(FOLLOW_category_value_in_category_values553);
@@ -416,7 +460,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt3) {
 				case 1:
-				// title_attr
+					// title_attr
 				{
 					pushFollow(FOLLOW_title_attr_in_category_value656);
 					title_attr9 = title_attr();
@@ -441,7 +485,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt4) {
 				case 1:
-				// rel_attr
+					// rel_attr
 				{
 					pushFollow(FOLLOW_rel_attr_in_category_value659);
 					rel_attr10 = rel_attr();
@@ -466,7 +510,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt5) {
 				case 1:
-				// location_attr
+					// location_attr
 				{
 					pushFollow(FOLLOW_location_attr_in_category_value662);
 					location_attr11 = location_attr();
@@ -491,7 +535,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt6) {
 				case 1:
-				// c_attributes_attr
+					// c_attributes_attr
 				{
 					pushFollow(FOLLOW_c_attributes_attr_in_category_value665);
 					c_attributes_attr12 = c_attributes_attr();
@@ -512,7 +556,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt7) {
 				case 1:
-				// actions_attr
+					// actions_attr
 				{
 					pushFollow(FOLLOW_actions_attr_in_category_value668);
 					actions_attr13 = actions_attr();
@@ -658,7 +702,7 @@ public class OcciParser extends Parser {
 
 				if (!(klass.equals(occi_core_class_kind)
 						|| klass.equals(occi_core_class_mixin) || klass
-							.equals(occi_core_class_action))) {
+						.equals(occi_core_class_action))) {
 					System.out
 							.println("the 'class' attribute's value can only be ['kind', 'mixin', 'action']");
 					// throw new
@@ -947,7 +991,7 @@ public class OcciParser extends Parser {
 
 					switch (alt8) {
 					case 1:
-					// ',' lv2= link_value
+						// ',' lv2= link_value
 					{
 						match(input, 14, FOLLOW_14_in_link_values1719);
 						pushFollow(FOLLOW_link_value_in_link_values1723);
@@ -1028,7 +1072,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt9) {
 				case 1:
-				// self_attr
+					// self_attr
 				{
 					pushFollow(FOLLOW_self_attr_in_link_value1831);
 					self_attr25 = self_attr();
@@ -1053,7 +1097,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt10) {
 				case 1:
-				// category_attr
+					// category_attr
 				{
 					pushFollow(FOLLOW_category_attr_in_link_value1834);
 					category_attr26 = category_attr();
@@ -1074,7 +1118,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt11) {
 				case 1:
-				// attribute_attr
+					// attribute_attr
 				{
 					pushFollow(FOLLOW_attribute_attr_in_link_value1837);
 					attribute_attr27 = attribute_attr();
@@ -1151,7 +1195,7 @@ public class OcciParser extends Parser {
 				}
 				switch (alt12) {
 				case 1:
-				// '?action=' TERM_VALUE
+					// '?action=' TERM_VALUE
 				{
 					match(input, 26, FOLLOW_26_in_target_attr1971);
 					TERM_VALUE29 = (Token) match(input, TERM_VALUE,
@@ -1336,7 +1380,7 @@ public class OcciParser extends Parser {
 
 					switch (alt13) {
 					case 1:
-					// ',' kv2= attribute_kv_attr
+						// ',' kv2= attribute_kv_attr
 					{
 						match(input, 14, FOLLOW_14_in_attributes_attr2447);
 						pushFollow(FOLLOW_attribute_kv_attr_in_attributes_attr2451);
@@ -1494,7 +1538,7 @@ public class OcciParser extends Parser {
 
 			switch (alt14) {
 			case 1:
-			// QUOTED_VALUE
+				// QUOTED_VALUE
 			{
 				QUOTED_VALUE35 = (Token) match(input, QUOTED_VALUE,
 						FOLLOW_QUOTED_VALUE_in_attribute_value_attr2631);
@@ -1505,7 +1549,7 @@ public class OcciParser extends Parser {
 			}
 				break;
 			case 2:
-			// DIGITS
+				// DIGITS
 			{
 				DIGITS36 = (Token) match(input, DIGITS,
 						FOLLOW_DIGITS_in_attribute_value_attr2661);
@@ -1517,7 +1561,7 @@ public class OcciParser extends Parser {
 			}
 				break;
 			case 3:
-			// FLOAT
+				// FLOAT
 			{
 				FLOAT37 = (Token) match(input, FLOAT,
 						FOLLOW_FLOAT_in_attribute_value_attr2691);
@@ -1653,7 +1697,7 @@ public class OcciParser extends Parser {
 
 					switch (alt15) {
 					case 1:
-					// ',' u2= URL
+						// ',' u2= URL
 					{
 						match(input, 14, FOLLOW_14_in_location_values3034);
 						u2 = (Token) match(input, URL,

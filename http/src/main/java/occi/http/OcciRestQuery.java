@@ -3,6 +3,8 @@
  *
  * Contact Email: <sebastian.heckmann@udo.edu>, <sebastian.laag@udo.edu>
  *
+ * Contact Email for Autonomic Resources: <mohamed.mohamed@telecom-sudparis.eu>
+ *
  * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +17,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package occi.http;
 
 import java.net.URISyntaxException;
@@ -28,6 +29,9 @@ import java.util.StringTokenizer;
 
 import javax.naming.directory.SchemaViolationException;
 
+import occi.application.Application;
+import occi.application.Deployable;
+import occi.application.Environment;
 import occi.config.OcciConfig;
 import occi.core.Action;
 import occi.core.Kind;
@@ -40,6 +44,8 @@ import occi.infrastructure.Storage;
 import occi.infrastructure.links.IPNetworkInterface;
 import occi.infrastructure.links.NetworkInterface;
 import occi.infrastructure.links.StorageLink;
+import occi.platform.Container;
+import occi.platform.Database;
 
 import org.restlet.data.Form;
 import org.restlet.data.Status;
@@ -400,17 +406,43 @@ public class OcciRestQuery extends ServerResource {
 	 */
 	private void createQueryKinds() {
 		// add the actions to the action list
+		/***IaaS******/
 		HashSet<String> computeActionNames = Compute.generateActionNames();
 		HashSet<String> networkActionNames = Network.generateActionNames();
 		HashSet<String> storageActionNames = Storage.generateActionNames();
+		/****PaaS*/
+		HashSet<String> containerActionNames = Container.generateActionNames();
+		HashSet<String> databaseActionNames = Database.generateActionNames();
+		
+		/****SaaS*/
+		HashSet<String> applicationActionNames = Application.generateActionNames();
+		HashSet<String> environmentActionNames = Environment.generateActionNames();
+		HashSet<String> deployableActionNames = Deployable.generateActionNames();
+		
 		// generate list with actions
+		/***IaaS******/
 		HashSet<Action> computeActionSet = Compute.generateActionSet();
 		HashSet<Action> networkActionSet = Network.generateActionSet();
 		HashSet<Action> storageActionSet = Storage.generateActionSet();
-
+		/****PaaS*/
+		HashSet<Action> containerActionSet = Container.generateActionSet();
+		HashSet<Action> databaseActionSet = Database.generateActionSet();
+		/****SaaS*/
+		HashSet<Action> applicationActionSet = Application.generateActionSet();
+		HashSet<Action> environmentActionSet = Environment.generateActionSet();
+		HashSet<Action> deployableActionSet = Deployable.generateActionSet();
+		
+		/***IaaS******/
 		Compute.generateAttributeList();
 		Network.generateAttributeList();
 		Storage.generateAttributeList();
+		/****PaaS*/
+		Container.generateAttributeList();
+		Database.generateAttributeList();
+		/****SaaS*/
+		Application.generateAttributeList();
+		Environment.generateAttributeList();
+		Deployable.generateAttributeList();
 		try {
 			// create a related Kind and add it to the list for the query
 			// interface
@@ -441,6 +473,47 @@ public class OcciRestQuery extends ServerResource {
 					Network.getAttributes());
 			network.setActionNames(networkActionNames);
 			queryKinds.add(network);
+			
+			// create container kind and add to kind list
+			Kind container = new Kind(containerActionSet, relatedSet, null, null,
+					"container", "container",
+					"http://schemas.ogf.org/occi/platform#",
+					Container.getAttributes());
+			container.setActionNames(containerActionNames);
+			queryKinds.add(container);			
+			
+			// create database kind and add to kind list
+			Kind database = new Kind(databaseActionSet, relatedSet, null, null,
+					"database", "database",
+					"http://schemas.ogf.org/occi/platform#",
+					Database.getAttributes());
+			database.setActionNames(databaseActionNames);
+			queryKinds.add(database);		
+			
+			// create application kind and add to kind list
+			Kind application = new Kind(applicationActionSet, relatedSet, null, null,
+					"application", "application",
+					"http://schemas.ogf.org/occi/application#",
+					Application.getAttributes());
+			application.setActionNames(applicationActionNames);
+			queryKinds.add(application);		
+			
+			// create environment kind and add to kind list
+			Kind environment = new Kind(environmentActionSet, relatedSet, null, null,
+					"environment", "environment",
+					"http://schemas.ogf.org/occi/application#",
+					Environment.getAttributes());
+			environment.setActionNames(environmentActionNames);
+			queryKinds.add(environment);
+			
+			// create deployable kind and add to kind list
+			Kind deployable = new Kind(deployableActionSet, relatedSet, null, null,
+					"deployable", "deployable",
+					"http://schemas.ogf.org/occi/application#",
+					Deployable.getAttributes());
+			deployable.setActionNames(deployableActionNames);
+			queryKinds.add(deployable);
+
 		} catch (Exception e) {
 			// create log message
 			e.printStackTrace();
