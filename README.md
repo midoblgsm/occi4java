@@ -1,4 +1,4 @@
-OCCI4Java
+AutonomicOCCI4Java
 ---------
 
 The project implements the Open Cloud Computing Interface specification of the [OCCI WG](http://www.occi-wg.org).
