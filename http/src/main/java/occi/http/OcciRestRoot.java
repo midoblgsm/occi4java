@@ -3,6 +3,8 @@
  *
  * Contact Email: <sebastian.heckmann@udo.edu>, <sebastian.laag@udo.edu>
  *
+ * Contact Email for Autonomic Resources: <mohamed.mohamed@telecom-sudparis.eu>
+ *
  * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +17,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package occi.http;
 
 import java.util.Collection;
@@ -28,7 +29,7 @@ import java.util.UUID;
 import occi.config.OcciConfig;
 import occi.core.Kind;
 import occi.http.check.OcciCheck;
-import occi.http.helper.MacAdressGenerator;
+import occi.http.helper.Generator;
 import occi.infrastructure.Compute;
 import occi.infrastructure.Compute.Architecture;
 import occi.infrastructure.Compute.State;
@@ -121,23 +122,16 @@ public class OcciRestRoot extends ServerResource {
 					xoccimap.put("category", temp[0]);
 				}
 			}
-			Response.getCurrent().getAttributes()
-					.put("org.restlet.http.headers", xOcciLocation);
-			Collection<Network> networkCollection = Network.getNetworkList()
-					.values();
+			Response.getCurrent().getAttributes().put(
+					"org.restlet.http.headers", xOcciLocation);
+			Collection<Network> networkCollection= Network.getNetworkList().values();
 			Iterator<Network> iterator = networkCollection.iterator();
-			while (iterator.hasNext()) {
-				LOGGER.debug(xoccimap.get("scheme").toString() + " "
-						+ xoccimap.get("category").toString());
+			while(iterator.hasNext()) {
+				LOGGER.debug(xoccimap.get("scheme").toString() + " " + xoccimap.get("category").toString());
 				Network network = iterator.next();
-				if (network.getKind().getScheme().toString()
-						.contains(xoccimap.get("scheme").toString())
-						&& network.getKind().getTerm()
-								.contains(xoccimap.get("category").toString())) {
-					LOGGER.debug(xoccimap.get("scheme").toString() + " ----- "
-							+ xoccimap.get("category").toString());
-					xOcciLocation.add("X-OCCI-Location", network.getKind()
-							.getTerm() + "/" + network.getId());
+				if(network.getKind().getScheme().toString().contains(xoccimap.get("scheme").toString()) && network.getKind().getTerm().contains(xoccimap.get("category").toString())) {
+					LOGGER.debug(xoccimap.get("scheme").toString() + " ----- " + xoccimap.get("category").toString());
+					xOcciLocation.add("X-OCCI-Location", network.getKind().getTerm() + "/" + network.getId());
 				}
 			}
 		}
@@ -145,13 +139,13 @@ public class OcciRestRoot extends ServerResource {
 		Representation representation = OcciCheck.checkContentType(
 				requestHeaders, buffer, getResponse());
 		getResponse().setEntity(representation);
-		// if (requestHeaders.getFirstValue("user-agent", true) != null) {
-		// if (!requestHeaders.getFirstValue("user-agent", true).contains(
-		// occiVersion)) {
-		// getResponse().setStatus(Status.SERVER_ERROR_NOT_IMPLEMENTED);
-		// return " ";
-		// }
-		// }
+//		if (requestHeaders.getFirstValue("user-agent", true) != null) {
+//			if (!requestHeaders.getFirstValue("user-agent", true).contains(
+//					occiVersion)) {
+//				getResponse().setStatus(Status.SERVER_ERROR_NOT_IMPLEMENTED);
+//				return " ";
+//			}
+//		}
 		return buffer.toString() + " ";
 	}
 
@@ -310,7 +304,7 @@ public class OcciRestRoot extends ServerResource {
 			if (link != null && target != null) {
 				NetworkInterface networkInterface = new NetworkInterface(
 						UUID.randomUUID().toString(),
-						MacAdressGenerator.generateMacAdress(),
+						Generator.generateMacAdress(),
 						occi.infrastructure.links.NetworkInterface.State.active,
 						link, target);
 				networkInterface.setKind(new Kind(null, null, null,

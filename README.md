@@ -10,7 +10,7 @@ Issue
 You have a issue? You are welcome to send us a message. Or just create a issue.
 
 Patch
-You have a patch for us? Please do NOT send us an email. Just [fork](http://help.github.com/fork-a-repo/) our repository, commit the patch and we will have a look if it fixes the issue.
+You a patch for us? Please do NOT send us an email. Just [fork](http://help.github.com/fork-a-repo/) our repository, commit the patch and we will have a look if it fixes the issue.
 
 Feature
 You want to add a new feature to our implementation, just send us a message, we will check it. Otherwise you can [fork](http://help.github.com/fork-a-repo/) our repository and add it yourself.
@@ -20,7 +20,7 @@ Implementation Details
 
 The project is divided in three parts, core, infrastructure and http. Every part corresponds to a part of the OCCI specification.
 
-To handle HTTP requests the [RESTlet Framework](http://www.restlet.org) was used.
+To handle HTTP requests the [RESTlet Framework](http://www.restlet.org/) was used.
 
 The project can be build with Maven.
 
@@ -48,10 +48,6 @@ Once they are installed you will find the built debian package in /distribution/
 Just go to the main folder of the project and type:
     
     $ mvn install
-
-If there are any problems, when building the project, you just can try.
-
-    $ mvn clean install
 
 If you dont want to build the project yourself, just check the download area. There you will find the current release.
 
@@ -82,11 +78,7 @@ If you have already build the project you will find a /conf folder where you can
 Debian Package
 --------------
 
-If you don´t want to build occi4java yourself, we are happy to provide a debian package, which will be build by invoking in distribution folder:
-
-    mvn package -P generate-jar
-
-The generated package can be easily installed with:
+If you don´t want to build occi4java yourself, we are happy to provide a debian package, which you can easily install with:
 
     dpkg -i occi4java_{version}_all.deb
 
@@ -101,20 +93,11 @@ Config files are located under /usr/share/occi4java/conf. If you change a parame
 Requirements
 ------------
 
-* Maven 3.x.x
-* Java 1.6
-
-To build the debian package you need a debian-based Linux distribution like Ubuntu.
+A Linux Distribution like Ubuntu.
 
 
 Changelog
 ---------
-
-0.5
-
-  * Overworked build process. Debian package build is outsourced in a maven profile
-  * Version numbers on every modules were removed
-  * Merged fixes from a fork (thanks to nilupa)
 
 0.3.1
 
@@ -138,4 +121,4 @@ Changelog
 
   * Initial release
 
-(c) 2012 Sebastian Laag, Sebastian Heckmann
+(c) 2011 Sebastian Laag, Sebastian Heckmann

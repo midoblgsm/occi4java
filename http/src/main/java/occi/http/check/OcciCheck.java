@@ -3,6 +3,8 @@
  *
  * Contact Email: <sebastian.heckmann@udo.edu>, <sebastian.laag@udo.edu>
  *
+ * Contact Email for Autonomic Resources: <mohamed.mohamed@telecom-sudparis.eu>
+ *
  * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,11 +17,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package occi.http.check;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import occi.core.Category;
@@ -193,8 +195,8 @@ public class OcciCheck extends ServerResource {
 	 */
 	public void setHeaderRendering(LinkedList<Kind> queryKinds) {
 		Form xOcciLocation = new Form();
-		Response.getCurrent().getAttributes()
-				.put("org.restlet.http.headers", xOcciLocation);
+		Response.getCurrent().getAttributes().put("org.restlet.http.headers",
+				xOcciLocation);
 		String location = "";
 		String category = "";
 		if (queryKinds != null) {
@@ -238,8 +240,8 @@ public class OcciCheck extends ServerResource {
 	public void setHeaderRendering(LinkedList<Kind> queryKinds,
 			Resource resource, String attributes, StringBuffer link) {
 		Form xOcciLocation = new Form();
-		Response.getCurrent().getAttributes()
-				.put("org.restlet.http.headers", xOcciLocation);
+		Response.getCurrent().getAttributes().put("org.restlet.http.headers",
+				xOcciLocation);
 		String location = "";
 		String category = "";
 		StringBuffer linkBuffer = new StringBuffer();
@@ -269,8 +271,8 @@ public class OcciCheck extends ServerResource {
 		if ((resource != null) && (attributes != null)) {
 			category = null;
 			// xOcciLocation = null;
-			Response.getCurrent().getAttributes()
-					.put("org.restlet.http.headers", xOcciLocation);
+			Response.getCurrent().getAttributes().put(
+					"org.restlet.http.headers", xOcciLocation);
 			category = ""; // resource.getKind().getTerm();
 
 			// add information about category and location to the header
@@ -298,7 +300,8 @@ public class OcciCheck extends ServerResource {
 				linkBuffer.append(">;rel=\"" + actionSchemeSubStr + "/");
 				linkBuffer.append(resource.getKind().getTerm() + "/action#");
 				linkBuffer.append(actionName.substring(actionName
-						.lastIndexOf("#") + 1) + "\" ");
+						.lastIndexOf("#") + 1)
+						+ "\" ");
 
 			}
 		}
@@ -327,8 +330,8 @@ public class OcciCheck extends ServerResource {
 	public void setHeaderRendering(LinkedList<Kind> queryKinds, Link link,
 			String attributes, StringBuffer linked) {
 		Form xOcciLocation = new Form();
-		Response.getCurrent().getAttributes()
-				.put("org.restlet.http.headers", xOcciLocation);
+		Response.getCurrent().getAttributes().put("org.restlet.http.headers",
+				xOcciLocation);
 		String location = link.getKind().getTitle() + "/" + link.getId();
 
 		String category = "";
@@ -360,8 +363,8 @@ public class OcciCheck extends ServerResource {
 		if ((link != null) && (attributes != null)) {
 			category = "";
 			// xOcciLocation = null;
-			Response.getCurrent().getAttributes()
-					.put("org.restlet.http.headers", xOcciLocation);
+			Response.getCurrent().getAttributes().put(
+					"org.restlet.http.headers", xOcciLocation);
 
 			// add information about category and location to the header
 			if (link.getKind() != null) {
@@ -388,7 +391,8 @@ public class OcciCheck extends ServerResource {
 					linkBuffer.append(">;rel=\"" + actionSchemeSubStr + "/");
 					linkBuffer.append(link.getKind().getTerm() + "/action#");
 					linkBuffer.append(actionName.substring(actionName
-							.lastIndexOf("#") + 1) + "\" ");
+							.lastIndexOf("#") + 1)
+							+ "\" ");
 
 				}
 			}
@@ -401,14 +405,14 @@ public class OcciCheck extends ServerResource {
 
 		xOcciLocation.add("Category", category);
 		xOcciLocation.add("X-OCCI-Location", location);
-		xOcciLocation.add("X-OCCI-Attribute",
-				linkBuffer.toString().replace("X-OCCI-Attribute: ", ""));
+		xOcciLocation.add("X-OCCI-Attribute", linkBuffer.toString().replace(
+				"X-OCCI-Attribute: ", ""));
 	}
 
 	public static void setHeaderRendering(Mixin mixin) {
 		Form xOcciLocation = new Form();
-		Response.getCurrent().getAttributes()
-				.put("org.restlet.http.headers", xOcciLocation);
+		Response.getCurrent().getAttributes().put("org.restlet.http.headers",
+				xOcciLocation);
 		String category = mixin.getTitle();
 		String clazz = "mixin";
 		String scheme = mixin.getScheme().toString();

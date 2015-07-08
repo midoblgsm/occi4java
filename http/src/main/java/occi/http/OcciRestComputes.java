@@ -3,6 +3,8 @@
  *
  * Contact Email: <sebastian.heckmann@udo.edu>, <sebastian.laag@udo.edu>
  *
+ * Contact Email for Autonomic Resources: <mohamed.mohamed@telecom-sudparis.eu>
+ *
  * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +17,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package occi.http;
 
 import java.net.URI;
@@ -47,7 +48,6 @@ import org.restlet.data.Status;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
-import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -278,10 +278,9 @@ public class OcciRestComputes extends ServerResource {
 					}
 				}
 			}
-		} catch (ResourceException e) {
-			throw e;
 		} catch (Exception e) {
 			LOGGER.error("Exception caught: " + e.toString());
+			e.printStackTrace();
 			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST,
 					e.toString());
 			return "Exception: " + e.getMessage() + "\n";

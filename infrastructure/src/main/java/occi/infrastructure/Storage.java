@@ -3,6 +3,8 @@
  *
  * Contact Email: <sebastian.heckmann@udo.edu>, <sebastian.laag@udo.edu>
  *
+ * Contact Email for Autonomic Resources: <mohamed.mohamed@telecom-sudparis.eu>
+ *
  * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +17,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package occi.infrastructure;
 
 import java.net.URISyntaxException;
@@ -32,8 +33,8 @@ import occi.core.Action;
 import occi.core.Link;
 import occi.core.Resource;
 
-import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * The Storage type represent resources that record information to a data
@@ -77,8 +78,8 @@ public class Storage extends Resource {
 	/*
 	 * All possible storage actions.
 	 */
-	private static ListableBeanFactory beanFactory = new ClassPathXmlApplicationContext(
-			"occiConfig.xml");
+	private static XmlBeanFactory beanFactory = new XmlBeanFactory(
+			new ClassPathResource("occiConfig.xml"));
 	private Action online = (Action) beanFactory.getBean("online");
 	private Action offline = (Action) beanFactory.getBean("offline");
 	private Action resize = (Action) beanFactory.getBean("resize");
@@ -208,7 +209,7 @@ public class Storage extends Resource {
 		}
 		return actionSet;
 	}
-
+	
 	/**
 	 * Return the storage attributes.
 	 * 
@@ -219,8 +220,7 @@ public class Storage extends Resource {
 	}
 
 	/**
-	 * @param online
-	 *            the online to set
+	 * @param online the online to set
 	 */
 	public void setOnline(Action online) {
 		this.online = online;
@@ -234,8 +234,7 @@ public class Storage extends Resource {
 	}
 
 	/**
-	 * @param create
-	 *            the create to set
+	 * @param create the create to set
 	 */
 	public void setCreate(Action create) {
 		this.create = create;
@@ -249,8 +248,7 @@ public class Storage extends Resource {
 	}
 
 	/**
-	 * @param snapshot
-	 *            the snapshot to set
+	 * @param snapshot the snapshot to set
 	 */
 	public void setSnapshot(Action snapshot) {
 		this.snapshot = snapshot;
@@ -264,8 +262,7 @@ public class Storage extends Resource {
 	}
 
 	/**
-	 * @param offline
-	 *            the offline to set
+	 * @param offline the offline to set
 	 */
 	public void setOffline(Action offline) {
 		this.offline = offline;
@@ -279,8 +276,7 @@ public class Storage extends Resource {
 	}
 
 	/**
-	 * @param resize
-	 *            the resize to set
+	 * @param resize the resize to set
 	 */
 	public void setResize(Action resize) {
 		this.resize = resize;
@@ -294,8 +290,7 @@ public class Storage extends Resource {
 	}
 
 	/**
-	 * @param backup
-	 *            the backup to set
+	 * @param backup the backup to set
 	 */
 	public void setBackup(Action backup) {
 		this.backup = backup;
